@@ -1,14 +1,25 @@
 {
-  "name": "note-taker",
+  "name": "notetaker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristopherPonzio/noteTaker.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristopherPonzio/noteTaker/issues"
+  },
+  "homepage": "https://github.com/ChristopherPonzio/noteTaker#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "uuid": "^8.3.2"
   }
 }
