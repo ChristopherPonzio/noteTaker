@@ -1,7 +1,7 @@
 const note = require('express').Router();
 
 // Helpers
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fsUtils');
 const { v4: uuidv4 } = require('uuid');
 
 // Get route for retrieving the notes
@@ -27,5 +27,22 @@ note.post('/', (req, res) => {
         res.error('Error in adding Note');
     }
 });
+
+// DELETE Route for a specific tip
+note.delete('/:id', (req, res) => {
+    const Id = req.params.id;
+    readFromFile('./db/db.json')
+      .then((data) => JSON.parse(data))
+      .then((json) => {
+        // Make a new array of all tips except the one with the ID provided in the URL
+        const result = json.filter((note) => note.id !== Id);
+  
+        // Save that array to the filesystem
+        writeToFile('./db/db.json', result);
+  
+        // Respond to the DELETE request
+        res.json(`Item ${Id} has been deleted 🗑️`);
+      });
+  });
 
 module.exports = note;
